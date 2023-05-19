@@ -1,2 +1,1 @@
-# mlops-zoomcamp
-mlops-zoomcamp
+This Repo contains my code for the MLObs Zoomcamp.
