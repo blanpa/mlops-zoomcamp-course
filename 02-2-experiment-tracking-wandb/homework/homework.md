@@ -29,6 +29,9 @@ Once you installed the package, run the command `wandb --version` and check the 
 
 What's the version that you have?
 
+Answer:
+- 
+
 # Q2. Download and preprocess the data
 
 We'll use the Green Taxi Trip Records dataset to predict the amount of tips for each trip. 
@@ -71,6 +74,9 @@ Once you navigate to the `Files` tab of your artifact on your Weights & Biases p
 * 54 MB
 * 154 MB
 
+Answer:
+- 
+
 # Q3. Train a model with Weights & Biases logging
 
 We will train a `RandomForestRegressor` (from Scikit-Learn) on the taxi dataset.
@@ -111,6 +117,10 @@ Once you have successfully ran the script, navigate the `Overview` section of th
 * 8
 * 10
 
+Answer:
+- 
+
+
 # Q4. Tune model hyperparameters
 
 Now let's try to reduce the validation error by tuning the hyperparameters of the `RandomForestRegressor` using [Weights & Biases Sweeps](https://docs.wandb.ai/guides/sweeps). We have prepared the script `sweep.py` for this exercise in the `homework-wandb` directory.
@@ -148,6 +158,9 @@ Now that the model artifact is linked to the Registered Model, which of these in
 * Source run
 * All of these
 * None of these
+
+Answer:
+- 
 
 ## Submit the results
 

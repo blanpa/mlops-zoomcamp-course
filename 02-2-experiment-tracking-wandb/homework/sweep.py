@@ -27,7 +27,12 @@ def run_train(data_artifact: str):
 
     # Define the XGBoost Regressor Mode, train the model and perform prediction
     # TODO: Pass the parameters n_estimators, min_samples_split, min_samples_leaf from `config` to `RandomForestRegressor`
-    rf = RandomForestRegressor(max_depth=config.max_depth, random_state=0)
+    rf = RandomForestRegressor(
+        max_depth=config.max_depth, 
+        n_estimators= config.n_estimators,
+        min_samples_split = config.min_samples_split,
+        min_samples_leaf = config.min_samples_leaf,
+        random_state=0)
     rf.fit(X_train, y_train)
     y_pred = rf.predict(X_val)
 
@@ -77,7 +82,7 @@ SWEEP_CONFIG = {
     "--data_artifact",
     help="Address of the Weights & Biases artifact holding the preprocessed data",
 )
-@click.option("--count", default=5, help="Number of iterations in the sweep")
+@click.option("--count", default=100, help="Number of iterations in the sweep")
 def run_sweep(wandb_project: str, wandb_entity: str, data_artifact: str, count: int):
     sweep_id = wandb.sweep(SWEEP_CONFIG, project=wandb_project, entity=wandb_entity)
     wandb.agent(sweep_id, partial(run_train, data_artifact=data_artifact), count=count)
