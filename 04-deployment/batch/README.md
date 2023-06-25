@@ -12,3 +12,8 @@
     python score_deploy.py
 
     python score_backfill.py
+
+    Updated Pipfile.lock (a688fce454e43fe3bb580d96447c45e3f513e42b1b469b15c43591b4bc8e23e2)!
+Installing dependencies from Pipfile.lock (8e23e2)...
+To activate this project's virtualenv, run pipenv shell.
+Alternatively, run a command inside the virtualenv with pipenv run.
