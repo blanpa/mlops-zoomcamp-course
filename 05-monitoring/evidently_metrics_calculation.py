@@ -79,7 +79,12 @@ def calculate_metrics_postgresql(curr, i):
 	share_missing_values = result['metrics'][2]['result']['current']['share_of_missing_values']
 
 	curr.execute(
-		"insert into dummy_metrics(timestamp, prediction_drift, num_drifted_columns, share_missing_values) values (%s, %s, %s, %s)",
+		"""insert into dummy_metrics(
+			timestamp, 
+			prediction_drift, 
+			num_drifted_columns, 
+			share_missing_values
+			) values (%s, %s, %s, %s)""",
 		(begin + datetime.timedelta(i), prediction_drift, num_drifted_columns, share_missing_values)
 	)
 
