@@ -1,0 +1,62 @@
+version: '3.7'
+
+services:
+  mlflow:
+    image: mlflow:latest
+    container_name: mlflow
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - MLFLOW_S3_ENDPOINT_URL=http://minio:9000
+      - AWS_ACCESS_KEY_ID=minio
+      - AWS_SECRET_ACCESS_KEY=minio123
+    ports:
+      - "5000:5000"
+    command: mlflow server \
+      --backend-store-uri postgresql+psycopg2://mlflow:password@postgres/mlflow \
+      --default-artifact-root s3://mlflow/
+    networks:
+      - mlflow_network
+    depends_on:
+      - postgres
+      - minio
+
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_USER: mlflow
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mlflow
+    ports:
+      - "5432:5432"
+    networks:
+      - mlflow_network
+
+  minio:
+    image: minio/minio
+    container_name: minio
+    environment:
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+    ports:
+      - "9000:9000"
+    command: server /data
+    networks:
+      - mlflow_network
+
+  minio_setup:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      sleep 10;
+      mc alias set myminio http://minio:9000 minio minio123;
+      mc mb myminio/mlflow;
+      "
+    networks:
+      - mlflow_network
+
+networks:
+  mlflow_network:
+    driver: overlay

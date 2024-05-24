@@ -1,0 +1,6 @@
+artifact_location: file:///home/pascal/Projects/my/mlops-zoomcamp/02-1-experiment-tracking-mlflow/homework/mlruns/689101390703100731
+creation_time: 1685904851423
+experiment_id: '689101390703100731'
+last_update_time: 1685904851423
+lifecycle_stage: active
+name: random-forest

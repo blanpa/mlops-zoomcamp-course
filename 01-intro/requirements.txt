@@ -2,7 +2,3 @@ pandas
 seaborn
 matplotlib
 scikit-learn
-pyarrow
-fastparquet
-
-pivottablejs
